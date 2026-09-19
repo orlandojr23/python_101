@@ -1,0 +1,107 @@
+GROUP 1 - IAS1 MODULE 9 WRITTEN PLAN
+Secure Storage Audit: CIA Triad Justification & Audit Checklist
+Course: Information Assurance and Security 1 (IAS1)
+Presentation Date: Tuesday, September 22, 2026
+Group Members: OJ & friends | Language: Python
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PART 1 - CIA TRIAD JUSTIFICATION (Written Plan)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▶ public.txt - CIA Focus: AVAILABILITY
+────────────────────────────────────────
+public.txt is intentionally stored as unencrypted, plain text and is readable
+by all roles - Guest, Employee, and Owner - without any authentication or
+decryption step. Availability is prioritized because the file contains only
+non-sensitive public notices where restricting access would create unnecessary
+friction and serve no security benefit. Ensuring that every user can retrieve
+this information instantly, at all times, directly satisfies the Availability
+pillar of the CIA Triad.
+
+
+▶ internal.txt - CIA Focus: INTEGRITY + CONTROLLED AVAILABILITY
+─────────────────────────────────────────────────────────────────
+Access to internal.txt is restricted to Employee and Owner roles through
+Role-Based Access Control (RBAC), enforcing the Principle of Least Privilege
+so that Guest-level users are completely denied access. This preserves
+Integrity by ensuring only authorized personnel can view or reference internal
+operational documents, reducing the risk of unauthorized reads, modifications,
+or information leakage. Controlled Availability is maintained because the file
+remains accessible to those who legitimately need it, while being hidden from
+anyone without sufficient role clearance.
+
+
+▶ sensitive.txt - CIA Focus: CONFIDENTIALITY
+──────────────────────────────────────────────
+Confidentiality for sensitive.txt is enforced through two independent security
+layers: Role-Based Access Control (RBAC) that restricts access to the Owner
+role only, and AES encryption-at-rest (Fernet, via Python's cryptography
+library) so the file on disk is stored as unreadable ciphertext at all times.
+Even if an unauthorized party gains physical access to the storage directory,
+they cannot read the file's contents without the correct decryption key, which
+is only provided interactively to the authenticated Owner. This dual-layer
+approach - authorization (RBAC) plus encryption - ensures that Confidentiality
+is maintained at both the access-control and storage levels.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PART 2 - STORAGE SECURITY AUDIT CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[✔] YES   Data Location: Storage location identified
+          → Local File System (SECURE_STORAGE_LAB/ folder)
+          → Files: public.txt, internal.txt, sensitive.txt
+
+[✔] YES   Access Roles: Roles clearly defined
+          → Guest    (Level 0) - Public access only
+          → Employee (Level 1) - Internal + Public access
+          → Owner    (Level 2) - Full access + encrypted file access
+
+[✔] YES   Least Privilege: Principle of Least Privilege enforced
+          → No "everyone" access for sensitive or internal files.
+          → Each file has a minimum required role level enforced in rbac.py.
+          → Guests cannot access internal.txt or sensitive.txt.
+          → Employees cannot access sensitive.txt.
+
+[✔] YES   Encryption-at-Rest: Encryption enabled for sensitive data
+          → sensitive.txt is encrypted using AES-128 (Fernet) via Python's
+            cryptography library before being written to disk.
+          → The file on disk is ciphertext - unreadable without the key.
+          → Decryption happens only in-memory, at runtime, for the Owner.
+
+[✔] YES   Monitoring/Logging: Access attempts logged
+          → All access attempts (both successful and denied) are automatically
+            appended to audit_log.txt with timestamp, role, filename, and status.
+          → Example log entry format:
+            [2026-09-22 10:15:32]  ROLE=GUEST      FILE=sensitive.txt   STATUS=DENIED
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PART 3 - COACHING PROMPT / RISK ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+One Risk / Vulnerability Found:
+────────────────────────────────
+The decryption passphrase ("IAS1-SecureOwner-2026") is hardcoded directly
+inside setup.py. This means anyone who reads the source code - or finds it in
+a version control repository (e.g., GitHub) - can extract the key and decrypt
+sensitive.txt without going through the RBAC or the decryption prompt. This
+violates the security principle that secrets must never live in plaintext
+inside source code.
+
+One Proposed Fix (Production Mitigation):
+──────────────────────────────────────────
+In a production system, the passphrase or its derived key would be stored and
+managed by a Key Management Service (KMS) - such as AWS KMS, Azure Key Vault,
+or HashiCorp Vault - and never embedded in the codebase. The application would
+request the encryption key from the KMS at runtime only after the user
+successfully authenticates, ensuring the key is never exposed in source code,
+logs, or version control repositories. This eliminates the single point of
+failure introduced by a hardcoded secret.
+
+
+================================================================================
+END OF WRITTEN PLAN - Group 1 | IAS1 Module 9
+================================================================================

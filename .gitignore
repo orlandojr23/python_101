@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+secure_storage_lab/audit_log.txt
+secure_storage_lab/SECURE_STORAGE_LAB/
