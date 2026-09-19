@@ -1,6 +1,6 @@
 # 🎤 Group 1 - Complete Presentation Script
 **IAS1 Module 9 | September 22, 2026**
-**Members: OJ · Enzy · Angel · Andrey · Rodney · Harry**
+**Members: OJ · Enzy · Angel · Andrey · Rodney · Harry · Khetchie**
 
 ---
 
@@ -13,7 +13,8 @@
 | **Angel** | EMPLOYEE Demo | Demonstrates Employee role - shows group-level access |
 | **Andrey** | OWNER + Encryption | Demonstrates decryption sequence (the highlight of the demo) |
 | **Rodney** | Audit Log + CIA Triad | Shows the live audit log, reads the CIA Triad justification |
-| **Harry** | Checklist + Risk Analysis | Reads the audit checklist, presents the vulnerability and fix |
+| **Khetchie** | Audit Checklist | Reads the completed Storage Security Audit Checklist |
+| **Harry** | Risk Analysis | Presents the identified vulnerability and proposed fix |
 
 > [!IMPORTANT]
 > Only **one person sits at the keyboard** at a time. Everyone else stands beside them. Pass the keyboard cleanly between parts.
@@ -200,9 +201,9 @@ type c:\Users\orlan\python_101\secure_storage_lab\SECURE_STORAGE_LAB\sensitive.t
 
 ---
 
-### ⚫ Harry - PART 6: Audit Checklist + Risk Analysis (≈ 2 minutes)
+### ⚫ Khetchie - PART 6: Audit Checklist (≈ 1 minute)
 
-**Harry takes over. Still on the presentation notes screen - or can refer to WRITTEN_PLAN.txt.**
+**Khetchie takes over. Still on the presentation notes screen - or can refer to WRITTEN_PLAN.txt.**
 
 > *"Here is our completed Storage Security Audit Checklist:"*
 
@@ -218,7 +219,13 @@ type c:\Users\orlan\python_101\secure_storage_lab\SECURE_STORAGE_LAB\sensitive.t
 >
 > Monitoring and Logging - YES. All access attempts are logged automatically to audit_log.txt."*
 
-**Then for the Risk Analysis:**
+**Khetchie hands over to Harry.**
+
+---
+
+### ⚫ Harry - PART 7: Risk Analysis (≈ 1 minute)
+
+**Harry takes over.**
 
 > *"For our Coaching Prompt - we identified one vulnerability in our implementation.*
 >
@@ -238,7 +245,7 @@ type c:\Users\orlan\python_101\secure_storage_lab\SECURE_STORAGE_LAB\sensitive.t
 
 ---
 
-## ⏱️ Total Estimated Time: ~12–15 minutes
+## ⏱️ Total Estimated Time: ~13–15 minutes
 
 | Part | Member | Time |
 |---|---|---|
@@ -247,7 +254,8 @@ type c:\Users\orlan\python_101\secure_storage_lab\SECURE_STORAGE_LAB\sensitive.t
 | EMPLOYEE Demo | Angel | ~2 min |
 | OWNER + Encryption | Andrey | ~3 min |
 | Audit Log + CIA Triad | Rodney | ~3 min |
-| Checklist + Risk | Harry | ~2 min |
+| Audit Checklist | Khetchie | ~1 min |
+| Risk Analysis | Harry | ~1 min |
 | Closing | OJ | ~30 sec |
 
 ---
