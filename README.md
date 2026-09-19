@@ -1,7 +1,7 @@
 # Secure Storage Lab - Group 1 | IAS1 Module 9
 
 **Course:** Information Assurance and Security 1  
-**Group:** Group 1 - OJ, Enzy, Angel, Andrey, Rodney, Harry  
+**Group:** Group 1 - OJ, Enzy, Angel, Andrey, Rodney, Harry, Khetchie  
 **Date:** September 22, 2026
 
 ---
